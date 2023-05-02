@@ -8,10 +8,11 @@ node_modules
 # testing
 coverage
 
-# next.js
+# node
 .next/
 out/
 build
+dist
 
 # misc
 .DS_Store
@@ -34,3 +35,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# IDEs
+.idea

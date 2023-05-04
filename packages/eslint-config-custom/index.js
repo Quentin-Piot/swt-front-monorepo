@@ -3,9 +3,4 @@ module.exports = {
   rules: {
     quotes: ["error", "double"],
   },
-  parserOptions: {
-    babelOptions: {
-      presets: [require.resolve("next/babel")],
-    },
-  },
 };

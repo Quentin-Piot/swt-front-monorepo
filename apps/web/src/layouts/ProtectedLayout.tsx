@@ -1,25 +1,15 @@
-import {Outlet, useNavigate} from "react-router-dom";
-import {useEffect} from "react";
-import {useAuth} from "@/contexts/UseAuth";
+import { Outlet } from "react-router-dom";
+import { Box } from "@chakra-ui/react";
+import Navbar from "@/components/Navbar";
 
 export const ProtectedLayout = () => {
-  const {fetchUser, user} = useAuth();
-  const navigate = useNavigate();
-
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("swt-user-token");
-    if (token && !user) {
-      return fetchUser();
-    }
-    if (!user)
-      navigate("/auth/login");
-  }, [fetchUser, navigate, user]);
-
-
-  return (
-      <main>
-        <Outlet/>
-      </main>
-  );
+    return (
+        <main>
+            <Box w="100vw" h="100vh">
+                <Navbar>
+                    <Outlet />
+                </Navbar>
+            </Box>
+        </main>
+    );
 };

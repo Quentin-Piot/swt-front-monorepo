@@ -21,7 +21,7 @@ import { client } from "@/services/client";
 const MapContent = () => {
     const { isOpen, onClose, onOpen } = useDisclosure();
 
-    const { user } = useAuth();
+    const { user, isConnected } = useAuth();
     const selectedTeamId = useMemo(
         () => (user && user.selectedTeamId) || 0,
         [user]
@@ -30,6 +30,8 @@ const MapContent = () => {
     const { data } = useQuery({
         queryKey: ["nodes", selectedTeamId],
         queryFn: () => getNodesForTeamId(client, selectedTeamId),
+        enabled: isConnected,
+        refetchOnWindowFocus: false,
     });
     const [nodePosition, setNodePosition] = useState<[number, number]>([0, 0]);
     const [nodeTitle, setNodeTitle] = useState("");
@@ -37,13 +39,13 @@ const MapContent = () => {
 
     const nodes: MapNode[] = useMemo(() => {
         if (!data) return [];
-
         return data.map((node) => ({
             id: node.id,
             description: node.description,
             location: [node.latitude, node.longitude],
         }));
     }, [data]);
+
     const mutation = useMutation({
         mutationFn: (node: NodeInput) => {
             return createNode(client, node);

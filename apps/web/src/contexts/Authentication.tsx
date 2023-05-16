@@ -1,4 +1,4 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 import { PropsWithChildren } from "@/common/types/standard-props";
 import { User } from "@/common/models/user";
 import { getUser } from "@/api/users";
@@ -70,7 +70,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         const clearToken = () => {
             localStorage.removeItem("swt-user-token");
         };
-
+        const token = localStorage.getItem("swt-user-token");
+        if (token && !user) {
+            updateToken(token);
+            fetchUser();
+        }
         return {
             user,
             login,
@@ -82,13 +86,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         };
     }, [user]);
 
-    useEffect(() => {
-        const token = localStorage.getItem("swt-user-token");
-        if (token && !value.user) {
-            value.updateToken(token);
-            value.fetchUser();
-        }
-    }, [value]);
     return (
         <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
     );

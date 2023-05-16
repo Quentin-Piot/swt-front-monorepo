@@ -82,3 +82,4 @@ export default class Client implements ClientInterface {
         return fetch(`${this.baseUrl}${path}`, params);
     }
 }
+export const client = Client.initClient();

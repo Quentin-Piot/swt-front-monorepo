@@ -13,8 +13,8 @@ import {
 } from "@chakra-ui/react";
 import { FiChevronDown } from "react-icons/fi";
 import { getCallbackUrl } from "@/api/users";
-import { client } from "@/App";
 import { useAuth } from "@/hooks/UseAuth";
+import { client } from "@/services/client";
 
 const ProfileMenu = () => {
     const { isConnected, clearToken, logout } = useAuth();

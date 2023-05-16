@@ -1,9 +1,9 @@
 import { getCallbackUrl } from "@/api/users";
 import { Button } from "@chakra-ui/react";
-import { client } from "@/App";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "@/hooks/UseAuth";
+import { client } from "@/services/client";
 
 export default function LoginPage() {
     const [searchParams] = useSearchParams();

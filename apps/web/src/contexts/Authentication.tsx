@@ -1,9 +1,9 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import { PropsWithChildren } from "@/common/types/standard-props";
 import { User } from "@/common/models/user";
-import { client } from "@/App";
 import { getUser } from "@/api/users";
 import { getTeams } from "@/api/teams";
+import { client } from "@/services/client";
 
 type AuthContext = {
     user: User | null;

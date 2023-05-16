@@ -6,10 +6,8 @@ import { ProtectedLayout } from "@/layouts/ProtectedLayout";
 import HomePage from "@/pages/Home";
 import { AuthProvider } from "@/contexts/Authentication";
 import { ChakraProvider } from "@chakra-ui/react";
-import Client from "@/services/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-export const client = Client.initClient();
 const queryClient = new QueryClient();
 
 function App() {

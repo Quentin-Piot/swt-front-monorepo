@@ -1,10 +1,10 @@
-import {Outlet} from "react-router";
+import { Outlet } from "react-router";
 
 export const AuthenticationLayout = () => {
     return (
         <>
             <main>
-                <Outlet/>
+                <Outlet />
             </main>
         </>
     );

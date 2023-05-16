@@ -14,9 +14,9 @@ import {
 } from "@chakra-ui/react";
 import { MapNode } from "@/common/types/map";
 import { createNode, getNodesForTeamId, NodeInput } from "@/api/nodes";
-import { client } from "@/App";
 import { useAuth } from "@/hooks/UseAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { client } from "@/services/client";
 
 const MapContent = () => {
     const { isOpen, onClose, onOpen } = useDisclosure();

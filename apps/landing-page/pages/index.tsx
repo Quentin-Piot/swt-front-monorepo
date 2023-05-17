@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import NextImage from "next/image";
 import React, { useState } from "react";
 import Tilt from "react-parallax-tilt";
@@ -9,7 +9,7 @@ export default function LandingPage() {
   return (
     <>
       <Head>
-        <title>QQ && JUJU - Social World Tour - Quentin Piot</title>
+        <title>QQ & JUJU - Social World Tour - Quentin Piot</title>
         <meta
           name="description"
           content="The world tour website of QQ && JUJU. Explore the world with us. Quentin Piot - Juliette Cattin"
@@ -19,7 +19,7 @@ export default function LandingPage() {
       <Flex
         w="100vw"
         position="relative"
-        bgImage={"url('https://cdn.wallpapersafari.com/9/52/PzxWaG.jpg')"}
+        bgImage={"url('images/background.jpg')"}
         bgSize="cover"
         overflow="hidden"
         h={{ base: "100%", md: "100vh" }}
@@ -50,21 +50,28 @@ export default function LandingPage() {
               Social World Tour
             </Heading>
             <Text color={"white"} fontSize="xl" fontWeight={500}>
-              An application to follow QQ && JuJu and all their adventures
-              across the world
+              An application to follow QQ & JuJu and all their adventures across
+              the world
             </Text>
-            <Box color={"white"} fontSize="xl" fontWeight={500}>
+            <Box
+              color={"white"}
+              fontSize="xl"
+              fontWeight={500}
+              textDecoration="underline"
+            >
               Download our app:
             </Box>
-            <Flex>
-              <Image
-                src="https://logos-world.net/wp-content/uploads/2021/03/App-Store-Logo-2020.png"
-                h={8}
+            <Flex gap={6}>
+              <NextImage
+                src="/images/app-store.png"
+                height={32}
+                width={32}
                 alt="App Store Logo"
               />
-              <Image
-                h={8}
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Google_Play_Arrow_logo.svg/1200px-Google_Play_Arrow_logo.svg.png"
+              <NextImage
+                src="/images/play-store.png"
+                height={32}
+                width={32}
                 alt="Play Store logo"
               />
             </Flex>

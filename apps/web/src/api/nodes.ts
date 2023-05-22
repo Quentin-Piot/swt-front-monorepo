@@ -6,7 +6,7 @@ export type NodeInput = {
     description?: string;
     country_code: string;
     city: string;
-    team: number;
+    trip: number;
     latitude: number;
     longitude: number;
 };
@@ -22,12 +22,12 @@ export const createNode = async (
     return client.postJson<NodeInput, Node>("/nodes", node);
 };
 
-export const getNodesForTeamId = async (
+export const getNodesForTripId = async (
     client: Client,
     id: number
 ): Promise<Node[]> => {
     return client
-        .getJson<NodeResponse>("/nodes/team/" + id)
+        .getJson<NodeResponse>("/nodes/trip/" + id)
         .then((response) => {
             return response.nodes;
         });

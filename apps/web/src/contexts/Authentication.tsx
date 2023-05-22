@@ -2,7 +2,7 @@ import { createContext, useMemo, useState } from "react";
 import { PropsWithChildren } from "@/common/types/standard-props";
 import { User } from "@/common/models/user";
 import { getUser } from "@/api/users";
-import { getTeams } from "@/api/teams";
+import { getTrips } from "@/api/trips";
 import { client } from "@/services/client";
 
 type AuthContext = {
@@ -48,20 +48,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                     return user;
                 })
                 .then((user) => {
-                    getTeams(client).then((teams) => {
-                        let selectedTeamId = teams[0].id;
-                        const selectedTeamInStorage = localStorage.getItem(
-                            "swt-selected-team-id"
+                    getTrips(client).then((trips) => {
+                        let selectedTripId: number | null =
+                            trips.length > 0 ? trips[0].id : null;
+                        const selectedTripInStorage = localStorage.getItem(
+                            "swt-selected-trip-id"
                         );
 
-                        if (selectedTeamInStorage) {
-                            selectedTeamId = parseInt(selectedTeamInStorage);
+                        if (selectedTripInStorage) {
+                            selectedTripId = parseInt(selectedTripInStorage);
                         }
 
                         setUser({
                             ...user,
-                            teams: teams,
-                            selectedTeamId,
+                            trips: trips,
+                            selectedTripId,
                         });
                     });
                 });

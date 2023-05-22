@@ -13,7 +13,7 @@ import {
     useDisclosure,
 } from "@chakra-ui/react";
 import { MapNode } from "@/common/types/map";
-import { createNode, getNodesForTeamId, NodeInput } from "@/api/nodes";
+import { createNode, getNodesForTripId, NodeInput } from "@/api/nodes";
 import { useAuth } from "@/hooks/UseAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { client } from "@/services/client";
@@ -22,15 +22,12 @@ const MapContent = () => {
     const { isOpen, onClose, onOpen } = useDisclosure();
 
     const { user, isConnected } = useAuth();
-    const selectedTeamId = useMemo(
-        () => (user && user.selectedTeamId) || 0,
-        [user]
-    );
+    const selectedTripId = useMemo(() => user && user.selectedTripId, [user]);
     const queryClient = useQueryClient();
     const { data } = useQuery({
-        queryKey: ["nodes", selectedTeamId],
-        queryFn: () => getNodesForTeamId(client, selectedTeamId),
-        enabled: isConnected,
+        queryKey: ["nodes", selectedTripId],
+        queryFn: () => getNodesForTripId(client, selectedTripId),
+        enabled: isConnected && !isNaN(selectedTripId),
         refetchOnWindowFocus: false,
     });
     const [nodePosition, setNodePosition] = useState<[number, number]>([0, 0]);
@@ -51,7 +48,7 @@ const MapContent = () => {
             return createNode(client, node);
         },
         onSettled: () =>
-            queryClient.invalidateQueries(["nodes", selectedTeamId]),
+            queryClient.invalidateQueries(["nodes", selectedTripId]),
     });
 
     useMapEvents({
@@ -72,7 +69,7 @@ const MapContent = () => {
             description: nodeDescription,
             country_code: "FR",
             city: "Paris",
-            team: selectedTeamId,
+            trip: selectedTripId,
         });
         onClose();
     };

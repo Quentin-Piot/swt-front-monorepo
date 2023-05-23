@@ -13,7 +13,7 @@
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "framer-motion": "^10.12.6",
-    "next": "latest",
+    "next": "^13.4.3",
     "next-sitemap": "^4.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -21,13 +21,13 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.12",
-    "@types/react": "^18.0.22",
-    "@types/react-dom": "^18.0.7",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
     "autoprefixer": "^10.4.14",
     "eslint-config-custom": "workspace:*",
-    "eslint-config-next": "latest",
+    "eslint-config-next": "^13.4.3",
     "postcss": "^8.4.23",
     "tsconfig": "workspace:*",
-    "typescript": "^4.5.3"
+    "typescript": "^5.0.4"
   }
 }
